@@ -26,14 +26,11 @@ function LoginPage() {
             <h2 className="text-2xl font-bold mb-6 text-center text-stone-900">
                 Login
             </h2>
-
-            {/* Form dengan background krem & border */}
             <form onSubmit={handleLogin} className="flex flex-col gap-4 bg-stone-50 p-6 rounded-lg border border-stone-200">
                 <div>
                     <label className="block text-sm font-medium text-stone-600 mb-2">
                         Email:
                     </label>
-                    {/* Input style light mode */}
                     <input
                         type="email"
                         value={email}
@@ -55,7 +52,6 @@ function LoginPage() {
                     />
                 </div>
 
-                {/* Tombol pakai warna aksen Cokelat/Amber */}
                 <button
                     type="submit"
                     className="w-full bg-amber-800 hover:bg-amber-900 text-white font-bold py-3 px-4 rounded"

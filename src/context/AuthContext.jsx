@@ -1,4 +1,3 @@
-// src/context/AuthContext.jsx (Versi Sederhana)
 import React, { createContext, useState, useContext } from 'react';
 import axios from 'axios';
 
@@ -16,7 +15,7 @@ export function AuthProvider({ children }) {
       const newToken = response.data.token;
       localStorage.setItem('token', newToken);
       setToken(newToken);
-      return response; // Kembalikan response agar LoginPage bisa redirect
+      return response;
     } catch (err) {
       throw err;
     }

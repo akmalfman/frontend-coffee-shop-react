@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom'; // Import useParams
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 
@@ -7,20 +7,17 @@ function EditProductPage() {
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
     const [error, setError] = useState('');
-    const [loading, setLoading] = useState(true); // State loading
+    const [loading, setLoading] = useState(true);
 
-    const { id } = useParams(); // 1. Ambil 'id' dari URL (misal: "1")
+    const { id } = useParams();
     const { token } = useAuth();
     const navigate = useNavigate();
 
-    // 2. Ambil data produk saat halaman dibuka
     useEffect(() => {
         const fetchProduct = async () => {
             try {
                 setLoading(true);
-                // Panggil API Go kita yang baru!
                 const response = await axios.get(`http://localhost:8080/products/${id}`);
-                // Isi form dengan data yang didapat
                 setName(response.data.name);
                 setPrice(response.data.price);
                 setLoading(false);
@@ -30,19 +27,18 @@ function EditProductPage() {
             }
         };
         fetchProduct();
-    }, [id]); // Dependensi [id], jalankan jika id berubah
+    }, [id]);
 
-    // 3. Handle 'submit' untuk UPDATE (PUT)
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
         try {
             await axios.put(
-                `http://localhost:8080/products/${id}`, // URL untuk update
-                { name: name, price: parseInt(price) }, // Data baru
-                { headers: { 'Authorization': `Bearer ${token}` } } // Pakai token
+                `http://localhost:8080/products/${id}`,
+                { name: name, price: parseInt(price) },
+                { headers: { 'Authorization': `Bearer ${token}` } }
             );
-            navigate('/'); // Kembali ke Home setelah sukses
+            navigate('/');
         } catch (err) {
             setError('Gagal meng-update produk.');
         }
@@ -65,7 +61,7 @@ function EditProductPage() {
                     </label>
                     <input
                         type="text"
-                        value={name} // State 'name'
+                        value={name}
                         onChange={(e) => setName(e.target.value)}
                         required
                         className="w-full p-3 rounded-md bg-white text-stone-900 border border-stone-300 focus:border-amber-500 focus:ring-amber-500"
@@ -77,7 +73,7 @@ function EditProductPage() {
                     </label>
                     <input
                         type="number"
-                        value={price} // State 'price'
+                        value={price}
                         onChange={(e) => setPrice(e.target.value)}
                         required
                         placeholder="Contoh: 20000"
