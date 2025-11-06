@@ -91,4 +91,4 @@ Aplikasi ini adalah **Single Page Application (SPA)** yang fungsional penuh, men
 
 Proyek ini dirancang untuk berkomunikasi dengan API backend terpisah. Pastikan repositori backend berikut sudah berjalan:
 
-**[https://github.com/akmalfman/go-clean-architecture-api]](https://github.com/akmalfman/go-clean-architecture-api])**
+**[https://github.com/akmalfman/go-clean-architecture-api](https://github.com/akmalfman/go-clean-architecture-api)**
