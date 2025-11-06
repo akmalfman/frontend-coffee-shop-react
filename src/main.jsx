@@ -8,7 +8,13 @@ import './index.css'
 import LoginPage from './pages/LoginPage.jsx';
 import HomePage from './pages/HomePage.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
+
+import AddProductPage from './pages/AddProductPage.jsx';     // <-- BARU
+import EditProductPage from './pages/EditProductPage.jsx';
+import ProtectedRoute from './components/ProtectedRoute.jsx'; // <-- BARU
+
 import { AuthProvider } from './context/AuthContext.jsx'; // 1. Import
+
 
 const router = createBrowserRouter([
   {
@@ -18,6 +24,20 @@ const router = createBrowserRouter([
       { path: "/", element: <HomePage /> },
       { path: "/login", element: <LoginPage /> },
       { path: "/register", element: <RegisterPage /> },
+
+      {
+        path: "/add-product",
+        element: (
+          <ProtectedRoute>
+            <AddProductPage />
+          </ProtectedRoute>
+        )
+      },
+
+      {
+        path: "/edit-product/:id", // :id adalah parameter URL
+        element: (<ProtectedRoute><EditProductPage /></ProtectedRoute>)
+      }
     ],
   },
 ]);
